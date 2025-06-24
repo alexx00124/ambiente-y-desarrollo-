@@ -1,0 +1,30 @@
+{
+  "name": "ambiente-y-desarrollo-",
+  "version": "1.0.0",
+  "description": "pagina del medio ambiente",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexx00124/ambiente-y-desarrollo-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexx00124/ambiente-y-desarrollo-/issues"
+  },
+  "homepage": "https://github.com/alexx00124/ambiente-y-desarrollo-#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.50.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

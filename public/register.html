@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Registro</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <h2>Registrarse</h2>
+  <form id="regForm">
+    <input type="email" id="regEmail" placeholder="Correo" required />
+    <input type="password" id="regPass" placeholder="Contraseña" required />
+    <a href="/login">¿Ya tienes cuenta? Inicia sesión</a>
+    <button type="submit">Crear cuenta</button>
+  </form>
+  <p id="regMsg"></p>
+
+  <script>
+    const form = document.getElementById('regForm');
+    const msg = document.getElementById('regMsg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('regEmail').value;
+      const password = document.getElementById('regPass').value;
+
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await res.json();
+      if (data.error) {
+        msg.textContent = data.error;
+      } else {
+        msg.textContent = 'Registro exitoso 🎉 Redirigiendo...';
+        setTimeout(() => {
+          window.location.href = '/login';
+        }, 1500);
+      }
+
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Objetivos de Desarrollo Sostenible</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <nav>
+        <a href="/">register</a>
+        <a href="/login">login</a>
+        <a href="/ods.html">17 ODS</a>
+    </nav>
+    <h1>17 Objetivos de Desarrollo Sostenible</h1>
+    <div class="ods-container" id="odsContainer"></div>
+
+    <script>
+        async function cargarODS() {
+            try {
+                const res = await fetch('/api/ods');
+                const ods = await res.json();
+
+                const contenedor = document.getElementById('odsContainer');
+                ods.forEach(objetivo => {
+                    const div = document.createElement('div');
+                    div.className = 'ods-card';
+                    div.innerHTML = `
+                        <img src="${objetivo.imagen}" alt="ODS ${objetivo.id}" style="width:100%; height:auto; border-radius:4px; margin-bottom:10px;" />
+                        <p>${objetivo.desc}</p>
+                        `;
+                    contenedor.appendChild(div);
+                });
+            } catch (err) {
+                console.error('Error al cargar los ODS:', err);
+            }
+        }
+
+        cargarODS();
+    </script>
+</body>
+
+</html>
