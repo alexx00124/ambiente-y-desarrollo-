@@ -17,7 +17,7 @@ Este proyecto es una aplicación web enfocada en el tema del medio ambiente y el
 ---
 
 ## 📁 Estructura del proyecto
-
+```
 ambiente-y-desarrollo/
 │
 ├── public/
@@ -43,7 +43,7 @@ ambiente-y-desarrollo/
 ├── .env
 ├── package.json
 └── README.md
-
+```
 ## Configurar variables de entorno .env
 
 - SUPABASE_URL= (la URL de la base de datos)
