@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import authRoutes from './routes/auth.routes.js';
 import odsRoutes from './routes/ods.routes.js';
 import huellaRoutes from './routes/huella.routes.js';
+import dashboardRoutes from './routes/dashboard.routes.js';
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/ods', odsRoutes);
 app.use('/api/huella', huellaRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 
 app.get('/', (req, res) => {
@@ -44,6 +46,11 @@ app.get('/huella', (req, res) => {
 app.get('/continente', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'continente.html'));
 });
+
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'public', 'admin.html'));
+});
+
 
 
 const PORT = process.env.PORT || 3000;
