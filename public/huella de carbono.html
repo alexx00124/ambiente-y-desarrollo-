@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Objetivos Huella de Carbono</title>
+    <link rel="stylesheet" href="css/styles.css" /> 
+</head>
+<body>
+
+  <h1>🌍 Objetivos de la Huella de Carbono</h1>
+
+  <div class="accordion">
+    <div class="item">
+      <div class="title">
+        Medir las emisiones
+        <span class="icon">⌄</span>
+      </div>
+      <div class="content">
+        <p>Cuantificar cuántos gases de efecto invernadero genera una persona, empresa o actividad.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="title">
+        Concientizar
+        <span class="icon">⌄</span>
+      </div>
+      <div class="content">
+        <p>Informar a las personas sobre cómo sus acciones afectan al clima y motivarlas al cambio.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="title">
+        Reducir el impacto ambiental
+        <span class="icon">⌄</span>
+      </div>
+      <div class="content">
+        <p>Disminuir el uso de recursos contaminantes y adoptar prácticas sostenibles.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="title">
+        Establecer metas de reducción
+        <span class="icon">⌄</span>
+      </div>
+      <div class="content">
+        <p>Fijar compromisos para disminuir las emisiones año tras año, según acuerdos internacionales.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="title">
+        Mejorar la eficiencia energética
+        <span class="icon">⌄</span>
+      </div>
+      <div class="content">
+        <p>Usar energía de manera eficiente con tecnologías limpias como bombillos LED o electrodomésticos eficientes.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="title">
+        Promover la movilidad sostenible
+        <span class="icon">⌄</span>
+      </div>
+      <div class="content">
+        <p>Usar transporte público, bicicletas, caminar o vehículos eléctricos para reducir emisiones.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="title">
+        Apoyar la reforestación
+        <span class="icon">⌄</span>
+      </div>
+      <div class="content">
+        <p>Plantar árboles o proteger bosques que absorben CO₂ de la atmósfera.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="title">
+        Impulsar la economía baja en carbono
+        <span class="icon">⌄</span>
+      </div>
+      <div class="content">
+        <p>Desarrollar modelos económicos sostenibles, con energías limpias y producción verde.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="title">
+        Cumplir con normativas ambientales
+        <span class="icon">⌄</span>
+      </div>
+      <div class="content">
+        <p>Ayudar a gobiernos y empresas a cumplir leyes climáticas y estándares ambientales.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    
+    const items = document.querySelectorAll('.item');
+
+    items.forEach(item => {
+      const title = item.querySelector('.title');
+      title.addEventListener('click', () => {
+        items.forEach(i => {
+          if (i !== item) i.classList.remove('active');
+        });
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
