@@ -23,7 +23,6 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/ods', odsRoutes);
 app.use('/api/huella', huellaRoutes);
-app.use('/api/ods', odsRoutes);
 
 
 app.get('/', (req, res) => {
@@ -33,6 +32,19 @@ app.get('/', (req, res) => {
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
 });
+
+app.get('/ods', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'ods.html'));
+});
+
+app.get('/huella', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'huella.html'));
+});
+
+app.get('/continente', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'continente.html'));
+});
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Servidor listo en http://localhost:${PORT}`));

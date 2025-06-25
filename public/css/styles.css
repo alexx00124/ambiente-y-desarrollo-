@@ -70,6 +70,7 @@ button:hover {
 }
 
 p {
+  text-align: center;
   margin-top: 1rem;
   color: #2e7d32;
   font-weight: bold;

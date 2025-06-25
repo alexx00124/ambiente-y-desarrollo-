@@ -1,9 +1,8 @@
-<!-- public/login.html -->
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Iniciar sesión</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -13,19 +12,25 @@
   <form id="loginForm">
     <input type="email" id="loginEmail" placeholder="Correo" required />
     <input type="password" id="loginPass" placeholder="Contraseña" required />
-    <button type="submit">Entrar</button>
+    <p>¿No tienes cuenta? <a href="/">Regístrate aquí</a></p>
+    <button type="submit">Iniciar sesión</button>
   </form>
   <p id="loginMsg"></p>
 
   <script>
-    const form = document.getElementById('loginForm');
-    const msg = document.getElementById('loginMsg');
+  console.log('Script cargado');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = document.getElementById('loginEmail').value;
-      const password = document.getElementById('loginPass').value;
+  const form = document.getElementById('loginForm');
+  const msg  = document.getElementById('loginMsg');
 
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    console.log('Formulario enviado');
+
+    const email    = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPass').value;
+
+    try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -33,16 +38,26 @@
       });
 
       const data = await res.json();
+
+      console.log('Estado HTTP:', res.status);
+      console.log('Datos:', data);
+
       if (data.error) {
         msg.textContent = data.error;
       } else {
-        msg.textContent = 'Inicio de sesión exitoso ✅ Redirigiendo...';
+        msg.textContent = '¡Bienvenido! Redirigiendo…';
         setTimeout(() => {
-          window.location.href = '/ods.html';
+          window.location.href = '/huella';
         }, 1500);
       }
-    });
-  </script>
+
+    } catch (err) {
+      console.error('Error al hacer login:', err);
+      msg.textContent = 'Error del servidor';
+    }
+  });
+</script>
+
 </body>
 
 </html>

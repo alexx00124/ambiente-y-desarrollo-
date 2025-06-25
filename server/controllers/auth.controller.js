@@ -1,4 +1,3 @@
-// server/controllers/auth.controller.js
 import { supabase } from '../config/supabase.js';
 
 export async function register(req, res) {
@@ -24,4 +23,6 @@ export async function login(req, res) {
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) return res.status(401).json({ error: 'Credenciales incorrectas' });
+
+  res.status(200).json({ message: 'Login exitoso', data });
 }
