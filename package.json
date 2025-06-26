@@ -1,6 +1,7 @@
 {
   "name": "ambiente-y-desarrollo-",
   "version": "1.0.0",
+  "type": "module",
   "description": "pagina del medio ambiente",
   "main": "index.js",
   "scripts": {

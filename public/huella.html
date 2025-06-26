@@ -9,122 +9,58 @@
 </head>
 
 <body>
+
   <nav>
     <a href="/ods">17 ODS</a>
     <a href="/huella">Huella de Carbono</a>
-    <a href="/continente">continentes</a>
+    <a href="/continente">Continentes</a>
     <a href="/login">Cerrar sesión</a>
   </nav>
 
-  <h1>🌍 Objetivos de la Huella de Carbono</h1>
+  <header>
+    <h1>Objetivos de la Huella de Carbono</h1>
+  </header>
 
-  <div class="accordion">
-    <div class="item">
-      <div class="title">
-        Medir las emisiones
-        <span class="icon">⌄</span>
-      </div>
-      <div class="content">
-        <p>Cuantificar cuántos gases de efecto invernadero genera una persona, empresa o actividad.</p>
-      </div>
+  <h2 class="section-title">Nuestros objetivos</h2>
+
+  <div class="cards-container">
+    <div class="card">
+      <h3>Medir las emisiones</h3>
+      <p>Cuantificar cuántos gases de efecto invernadero genera una persona, empresa o actividad.</p>
     </div>
-
-    <div class="item">
-      <div class="title">
-        Concientizar
-        <span class="icon">⌄</span>
-      </div>
-      <div class="content">
-        <p>Informar a las personas sobre cómo sus acciones afectan al clima y motivarlas al cambio.</p>
-      </div>
+    <div class="card">
+      <h3>Concientizar</h3>
+      <p>Informar a las personas sobre cómo sus acciones afectan al clima y motivarlas al cambio.</p>
     </div>
-
-    <div class="item">
-      <div class="title">
-        Reducir el impacto ambiental
-        <span class="icon">⌄</span>
-      </div>
-      <div class="content">
-        <p>Disminuir el uso de recursos contaminantes y adoptar prácticas sostenibles.</p>
-      </div>
+    <div class="card">
+      <h3>Reducir el impacto ambiental</h3>
+      <p>Disminuir el uso de recursos contaminantes y adoptar prácticas sostenibles.</p>
     </div>
-
-    <div class="item">
-      <div class="title">
-        Establecer metas de reducción
-        <span class="icon">⌄</span>
-      </div>
-      <div class="content">
-        <p>Fijar compromisos para disminuir las emisiones año tras año, según acuerdos internacionales.</p>
-      </div>
+    <div class="card">
+      <h3>Establecer metas de reducción</h3>
+      <p>Fijar compromisos para disminuir las emisiones año tras año, según acuerdos internacionales.</p>
     </div>
-
-    <div class="item">
-      <div class="title">
-        Mejorar la eficiencia energética
-        <span class="icon">⌄</span>
-      </div>
-      <div class="content">
-        <p>Usar energía de manera eficiente con tecnologías limpias como bombillos LED o electrodomésticos eficientes.
-        </p>
-      </div>
+    <div class="card">
+      <h3>Mejorar la eficiencia energética</h3>
+      <p>Usar tecnologías limpias como bombillos LED o electrodomésticos eficientes.</p>
     </div>
-
-    <div class="item">
-      <div class="title">
-        Promover la movilidad sostenible
-        <span class="icon">⌄</span>
-      </div>
-      <div class="content">
-        <p>Usar transporte público, bicicletas, caminar o vehículos eléctricos para reducir emisiones.</p>
-      </div>
+    <div class="card">
+      <h3>Movilidad sostenible</h3>
+      <p>Usar transporte público, bicicletas, caminar o vehículos eléctricos para reducir emisiones.</p>
     </div>
-
-    <div class="item">
-      <div class="title">
-        Apoyar la reforestación
-        <span class="icon">⌄</span>
-      </div>
-      <div class="content">
-        <p>Plantar árboles o proteger bosques que absorben CO₂ de la atmósfera.</p>
-      </div>
+    <div class="card">
+      <h3>Apoyar la reforestación</h3>
+      <p>Plantar árboles o proteger bosques que absorben CO₂ de la atmósfera.</p>
     </div>
-
-    <div class="item">
-      <div class="title">
-        Impulsar la economía baja en carbono
-        <span class="icon">⌄</span>
-      </div>
-      <div class="content">
-        <p>Desarrollar modelos económicos sostenibles, con energías limpias y producción verde.</p>
-      </div>
+    <div class="card">
+      <h3>Economía baja en carbono</h3>
+      <p>Fomentar modelos sostenibles con energías limpias y producción verde.</p>
     </div>
-
-    <div class="item">
-      <div class="title">
-        Cumplir con normativas ambientales
-        <span class="icon">⌄</span>
-      </div>
-      <div class="content">
-        <p>Ayudar a gobiernos y empresas a cumplir leyes climáticas y estándares ambientales.</p>
-      </div>
+    <div class="card">
+      <h3>Normativas ambientales</h3>
+      <p>Ayudar a gobiernos y empresas a cumplir leyes climáticas y estándares internacionales.</p>
     </div>
   </div>
-
-  <script>
-
-    const items = document.querySelectorAll('.item');
-
-    items.forEach(item => {
-      const title = item.querySelector('.title');
-      title.addEventListener('click', () => {
-        items.forEach(i => {
-          if (i !== item) i.classList.remove('active');
-        });
-        item.classList.toggle('active');
-      });
-    });
-  </script>
 
 </body>
 

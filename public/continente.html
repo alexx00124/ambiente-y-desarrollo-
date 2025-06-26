@@ -2,125 +2,404 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Continente</title>
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <title>Continente - ODS</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Variables CSS para un diseño limpio y sencillo */
+        :root {
+            --primary-color: #2c3e50; /* Azul oscuro */
+            --accent-color: #3498db; /* Azul claro para acentos */
+            --bg-light: #fdfdfd; /* Fondo casi blanco */
+            --text-dark: #333;
+            --text-light: #fff;
+            --border-color: #e0e0e0; /* Color de borde suave */
+            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.08); /* Sombra muy sutil */
+            --border-radius: 8px;
+        }
+
+        /* Reset básico y tipografía sencilla */
+        body {
+            font-family: 'Roboto', sans-serif; /* Fuente limpia y moderna */
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Lato', sans-serif; /* Fuente complementaria para títulos */
+            color: var(--primary-color);
+            font-weight: 500; /* Menos negrita, más ligero */
+            margin-top: 0;
+            margin-bottom: 0.6em;
+        }
+
+        p {
+            color: var(--text-dark);
+            opacity: 0.85;
+            margin-bottom: 1em;
+            font-weight: 300; /* Texto más ligero */
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Navegación limpia */
+        nav {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: var(--shadow-light); /* Sombra muy ligera */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: var(--text-light);
+            padding: 10px 25px;
+            display: inline-block;
+            font-weight: 400;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* Fondo muy sutil al pasar el ratón */
+        }
+
+        /* Encabezado minimalista */
+        header {
+            background-color: var(--accent-color); /* Color de acento sólido */
+            color: var(--text-light);
+            text-align: center;
+            padding: 90px 20px;
+            margin-bottom: 50px;
+            box-shadow: var(--shadow-light); /* Sombra ligera */
+        }
+
+        header h1 {
+            color: var(--text-light);
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            font-weight: 700; /* Título principal más robusto */
+        }
+
+        header p {
+            font-size: 1.1em;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Sección de Continentes - Estructura clara */
+        section {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto 50px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px; /* Espacio moderado entre continentes */
+        }
+
+        .continente {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color); /* Borde suave */
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.2s ease; /* Transición sutil al pasar el ratón */
+        }
+
+        .continente:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra ligeramente más pronunciada */
+        }
+
+        .continente h2 {
+            color: var(--primary-color);
+            font-size: 2em;
+            text-align: center;
+            padding: 25px;
+            margin-bottom: 0;
+            background-color: #f5f5f5; /* Un fondo ligeramente diferente para el título */
+            border-bottom: 1px solid var(--border-color); /* Separador sutil */
+        }
+
+        /* Contenido Interno - Diseño limpio */
+        .continente-contenido-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr; /* Imagen más pequeña, info más grande */
+            gap: 20px;
+            padding: 25px;
+            align-items: start; /* Alineación al inicio */
+            flex-grow: 1;
+        }
+
+        /* Cuadro GRANDE para imagen, pero con estilo sencillo */
+        .continente-imagen {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); /* Sombra muy ligera */
+            border: 1px solid var(--border-color); /* Borde sutil */
+        }
+
+        .continente-imagen img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Cuadros PEQUEÑOS de ODS, limpios */
+        .ods-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .ods-card {
+            background-color: var(--bg-light);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color); /* Borde simple */
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05); /* Sombra muy ligera */
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .ods-card:hover {
+            border-color: var(--accent-color); /* Borde se acentúa al pasar el ratón */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra un poco más visible */
+        }
+
+        .ods-card h3 {
+            color: var(--primary-color);
+            font-size: 1.15em;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .ods-card p {
+            font-size: 0.95em;
+            margin-bottom: 0;
+        }
+
+        /* Pie de Página Sencillo */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        footer p {
+            color: var(--text-light); /* Asegura que el texto sea claro sobre fondo oscuro */
+            opacity: 0.8;
+            margin-bottom: 0.5em;
+        }
+
+        /* Media Queries para Responsividad limpia */
+        @media (max-width: 900px) {
+            .continente-contenido-layout {
+                grid-template-columns: 1fr; /* Apilar imagen y tarjetas */
+                text-align: center;
+            }
+            .continente-imagen {
+                max-width: 70%;
+                margin: 0 auto 20px auto; /* Centrar y añadir espacio abajo */
+            }
+            .ods-grid {
+                margin-top: 0; /* No hay espacio extra ya que la imagen ya tiene margen */
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 60px 15px;
+            }
+            header h1 {
+                font-size: 2.5em;
+            }
+            section {
+                padding: 20px 15px;
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            .continente {
+                padding: 15px;
+            }
+            .continente h2 {
+                font-size: 1.8em;
+                padding: 15px;
+            }
+            .continente-contenido-layout {
+                padding: 15px;
+            }
+            .ods-card {
+                padding: 15px;
+            }
+            nav a {
+                padding: 8px 12px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <nav>
-    <a href="/ods">17 ODS</a>
-    <a href="/huella">Huella de Carbono</a>
-    <a href="/continente">continentes</a>
-    <a href="/login">Cerrar sesión</a>
-  </nav>
+    <nav>
+        <a href="#ods">17 ODS</a>
+        <a href="/huella">Huella de Carbono</a>
+        <a href="#continentes">Continentes</a>
+        <a href="/login">Cerrar sesión</a>
+    </nav>
 
-  <header>
-    <h1>Objetivos de Desarrollo Sostenible por Continentes</h1>
-    <p>Distribucion educativa y tematica de los ODS en Continentes</p>
-  </header>
+    <header>
+        <h1>Objetivos de Desarrollo Sostenible por Continentes</h1>
+        <p>Una exploración clara de los ODS y su impacto global.</p>
+    </header>
 
-  <section>
-    <div class="continente">
-      <h2> 🌎 America</h2>
-      <div class="ods-grid">
-        <div class="ods-card">
-          <h3>1. Fin de la pobreza</h3>
-          <p>Eliminar la pobreza extrema en zonas urbanas y rurales.</p>
+    <section id="continentes">
+        <div class="continente">
+            <h2>🌎 América</h2>
+            <div class="continente-contenido-layout">
+                <div class="continente-imagen">
+                    <img src="img/america.jpg" alt="Mapa o imagen representativa de América">
+                </div>
+                <div class="ods-grid">
+                    <div class="ods-card">
+                        <h3>1. Fin de la pobreza</h3>
+                        <p>Eliminar la pobreza extrema en zonas urbanas y rurales.</p>
+                    </div>
+                    <div class="ods-card">
+                        <h3>2. Hambre cero</h3>
+                        <p>Apoyar la seguridad alimentaria y agricultura sostenible.</p>
+                    </div>
+                    <div class="ods-card">
+                        <h3>8. Trabajo decente y crecimiento económico</h3>
+                        <p>Fomentar el empleo justo y crecimiento inclusivo.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="ods-card">
-          <h3>2. Hambre cero</h3>
-          <p>Apoyar la seguridad alimentaria y agricultura sostenible.</p>
-        </div>
-        <div class="ods-card">
-          <h3>8. Trabajo decente y crecimiento económico</h3>
-          <p>Fomentar el empleo justo y crecimiento inclusivo.</p>
-        </div>
-      </div>
-    </div>
-    <div class="continente">
-      <h2>🌍 Europa</h2>
-      <div class="ods-grid">
-        <div class="ods-card">
-          <h3>4. Educación de calidad</h3>
-          <p>Sistemas educativos innovadores e inclusivos.</p>
-        </div>
-        <div class="ods-card">
-          <h3>9. Industria, innovación e infraestructura</h3>
-          <p>Promover tecnología limpia y conectividad.</p>
-        </div>
-        <div class="ods-card">
-          <h3>16. Paz, justicia e instituciones sólidas</h3>
-          <p>Construir instituciones eficaces y transparentes.</p>
-        </div>
-      </div>
-    </div>
 
+        <div class="continente">
+            <h2>🌍 Europa</h2>
+            <div class="continente-contenido-layout">
+                <div class="continente-imagen">
+                    <img src="img/europa.jpg" alt="Mapa o imagen representativa de Europa">
+                </div>
+                <div class="ods-grid">
+                    <div class="ods-card">
+                        <h3>4. Educación de calidad</h3>
+                        <p>Sistemas educativos innovadores e inclusivos.</p>
+                    </div>
+                    <div class="ods-card">
+                        <h3>9. Industria, innovación e infraestructura</h3>
+                        <p>Promover tecnología limpia y conectividad.</p>
+                    </div>
+                    <div class="ods-card">
+                        <h3>16. Paz, justicia e instituciones sólidas</h3>
+                        <p>Construir instituciones eficaces y transparentes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="continente">
-      <h2>🌍 África</h2>
-      <div class="ods-grid">
-        <div class="ods-card">
-          <h3>3. Salud y bienestar</h3>
-          <p>Acceso a salud básica y reducción de enfermedades.</p>
+        <div class="continente">
+            <h2>🌍 África</h2>
+            <div class="continente-contenido-layout">
+                <div class="continente-imagen">
+                    <img src="img/africa.jpg" alt="Mapa o imagen representativa de África">
+                </div>
+                <div class="ods-grid">
+                    <div class="ods-card">
+                        <h3>3. Salud y bienestar</h3>
+                        <p>Acceso a salud básica y reducción de enfermedades.</p>
+                    </div>
+                    <div class="ods-card">
+                        <h3>6. Agua limpia y saneamiento</h3>
+                        <p>Mejorar acceso a agua potable y saneamiento.</p>
+                    </div>
+                    <div class="ods-card">
+                        <h3>10. Reducción de las desigualdades</h3>
+                        <p>Promover la inclusión social y económica.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="ods-card">
-          <h3>6. Agua limpia y saneamiento</h3>
-          <p>Mejorar acceso a agua potable y saneamiento.</p>
-        </div>
-        <div class="ods-card">
-          <h3>10. Reducción de las desigualdades</h3>
-          <p>Promover la inclusión social y económica.</p>
-        </div>
-      </div>
-    </div>
 
+        <div class="continente">
+            <h2>🌏 Asia</h2>
+            <div class="continente-contenido-layout">
+                <div class="continente-imagen">
+                    <img src="img/asia.jpg" alt="Mapa o imagen representativa de Asia">
+                </div>
+                <div class="ods-grid">
+                    <div class="ods-card">
+                        <h3>7. Energía asequible y no contaminante</h3>
+                        <p>Impulsar energías renovables y sostenibles.</p>
+                    </div>
+                    <div class="ods-card">
+                        <h3>11. Ciudades y comunidades sostenibles</h3>
+                        <p>Desarrollo urbano resiliente y limpio.</p>
+                    </div>
+                    <div class="ods-card">
+                        <h3>12. Producción y consumo responsables</h3>
+                        <p>Minimizar residuos y promover eficiencia energética.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="continente">
-      <h2>🌏 Asia</h2>
-      <div class="ods-grid">
-        <div class="ods-card">
-          <h3>7. Energía asequible y no contaminante</h3>
-          <p>Impulsar energías renovables y sostenibles.</p>
+        <div class="continente">
+            <h2>🌊 Oceanía</h2>
+            <div class="continente-contenido-layout">
+                <div class="continente-imagen">
+                    <img src="img/oceania.jpg" alt="Mapa o imagen representativa de Oceanía">
+                </div>
+                <div class="ods-grid">
+                    <div class="ods-card">
+                        <h3>13. Acción por el clima</h3>
+                        <p>Adaptación climática en islas y zonas costeras.</p>
+                    </div>
+                    <div class="ods-card">
+                        <h3>14. Vida submarina</h3>
+                        <p>Proteger océanos y ecosistemas marinos.</p>
+                    </div>
+                    <div class="ods-card">
+                        <h3>15. Vida de ecosistemas terrestres</h3>
+                        <p>Preservar la biodiversidad y frenar la deforestación.</p>
+                    </div>
+                    <div class="ods-card">
+                        <h3>17. Alianzas para lograr los objetivos</h3>
+                        <p>Cooperación regional e internacional para los ODS.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="ods-card">
-          <h3>11. Ciudades y comunidades sostenibles</h3>
-          <p>Desarrollo urbano resiliente y limpio.</p>
-        </div>
-        <div class="ods-card">
-          <h3>12. Producción y consumo responsables</h3>
-          <p>Minimizar residuos y promover eficiencia energética.</p>
-        </div>
-      </div>
-    </div>
+    </section>
 
-
-    <div class="continente">
-      <h2>🌊 Oceanía</h2>
-      <div class="ods-grid">
-        <div class="ods-card">
-          <h3>13. Acción por el clima</h3>
-          <p>Adaptación climática en islas y zonas costeras.</p>
-        </div>
-        <div class="ods-card">
-          <h3>14. Vida submarina</h3>
-          <p>Proteger océanos y ecosistemas marinos.</p>
-        </div>
-        <div class="ods-card">
-          <h3>15. Vida de ecosistemas terrestres</h3>
-          <p>Preservar la biodiversidad y frenar la deforestación.</p>
-        </div>
-        <div class="ods-card">
-          <h3>17. Alianzas para lograr los objetivos</h3>
-          <p>Cooperación regional e internacional para los ODS.</p>
-        </div>
-      </div>
-    </div>
-
-  </section>
+    <footer>
+        <p>&copy; 2025 ODS Global. Todos los derechos reservados.</p>
+        <p>Diseño enfocado en la claridad y sostenibilidad.</p>
+    </footer>
 
 </body>
 
 </html>
-</section>

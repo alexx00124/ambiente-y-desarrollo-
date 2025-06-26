@@ -12,36 +12,26 @@
   <form id="loginForm">
     <input type="email" id="loginEmail" placeholder="Correo" required />
     <input type="password" id="loginPass" placeholder="Contraseña" required />
-    <p>¿No tienes cuenta? <a href="/">Regístrate aquí</a></p>
-    <button type="submit">Iniciar sesión</button>
+    <p>¿no tienes cuenta?<a href="register.html">crearse una cuenta?</a></p>
+    <button type="submit">Entrar</button>
   </form>
   <p id="loginMsg"></p>
-
   <script>
-  console.log('Script cargado');
+    const form = document.getElementById('loginForm');
+    const msg = document.getElementById('loginMsg');
 
-  const form = document.getElementById('loginForm');
-  const msg  = document.getElementById('loginMsg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPass').value;
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    console.log('Formulario enviado');
-
-    const email    = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPass').value;
-
-    try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
       });
-
+  
       const data = await res.json();
-
-      console.log('Estado HTTP:', res.status);
-      console.log('Datos:', data);
-
       if (data.error) {
         msg.textContent = data.error;
       } else {
@@ -50,14 +40,8 @@
           window.location.href = '/huella';
         }, 1500);
       }
-
-    } catch (err) {
-      console.error('Error al hacer login:', err);
-      msg.textContent = 'Error del servidor';
-    }
-  });
-</script>
-
+    });
+  </script>
 </body>
 
 </html>
