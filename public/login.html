@@ -3,20 +3,26 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Iniciar sesión</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  
 </head>
 
 <body>
-  <h2>Login</h2>
-  <form id="loginForm">
-    <input type="email" id="loginEmail" placeholder="Correo" required />
-    <input type="password" id="loginPass" placeholder="Contraseña" required />
-    <p>¿no tienes cuenta?<a href="register.html">crearse una cuenta?</a></p>
-    <button type="submit">Entrar</button>
-  </form>
-  <p id="loginMsg"></p>
+  <div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Correo electrónico" required />
+      <input type="password" id="loginPass" placeholder="Contraseña" required />
+      <button type="submit">Entrar</button>
+    </form>
+    <p>¿No tienes cuenta? <a href="register.html">Crear una cuenta</a></p>
+    <p id="loginMsg"></p>
+  </div>
+
+  <script src="js/login.js"></script>
 </body>
-<script src="js/login.js"></script>
 
 </html>
