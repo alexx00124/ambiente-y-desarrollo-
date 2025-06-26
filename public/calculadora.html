@@ -5,23 +5,227 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Huella de Carbono</title>
-    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navegación */
+        nav {
+            background-color: #4CAF50;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #66bb6a, #4CAF50);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 800px;
+            margin: -30px auto 0;
+            padding: 0 20px;
+        }
+
+        /* Tarjeta principal */
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .card h2 {
+            color: #2e7d32;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        /* Grupos de input */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #555;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            background: white;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .input-group input::placeholder {
+            color: #999;
+        }
+
+        /* Botón */
+        .btn-calculate {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 6px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: background-color 0.3s;
+        }
+
+        .btn-calculate:hover {
+            background-color: #45a049;
+        }
+
+        /* Resultado */
+        .result-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .result-card h3 {
+            color: #2e7d32;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .result-number {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #4CAF50;
+            margin: 15px 0;
+        }
+
+        .result-comparison {
+            background: #f1f8e9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .result-comparison p {
+            color: #2e7d32;
+            margin: 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 25px;
+                margin: 0 10px 20px;
+            }
+
+            .container {
+                margin-top: -20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-
     <nav>
-        <a href="/ods">17 ODS</a>
-        <a href="/huella">Huella de Carbono</a>
-        <a href="/continente">Continentes</a>
-        <a href="/calculadora">Calculadora de Huella</a>
-        <a href="/login">Cerrar sesión</a>
+        <div class="nav-container">
+            <a href="/ods">17 ODS</a>
+            <a href="/huella">Huella de Carbono</a>
+            <a href="/continente">Continentes</a>
+            <a href="/calculadora" class="active">Calculadora de Huella</a>
+            <a href="/login">Cerrar sesión</a>
+        </div>
     </nav>
 
-    <div class="calculator-container">
+    <div class="header">
         <h1>Calculadora de Huella de Carbono</h1>
+        <p>Estrategias integrales para la medición, reducción y gestión sostenible de emisiones</p>
+    </div>
 
-        <div class="category">
+    <div class="container">
+        <div class="card">
             <h2>Hogar</h2>
             <div class="input-group">
                 <label for="electricidad">Electricidad (kWh/mes):</label>
@@ -33,7 +237,7 @@
             </div>
         </div>
 
-        <div class="category">
+        <div class="card">
             <h2>Movilidad</h2>
             <div class="input-group">
                 <label for="autoKm">Km en auto (mensual):</label>
@@ -53,7 +257,7 @@
             </div>
         </div>
 
-        <div class="category">
+        <div class="card">
             <h2>Hábitos</h2>
             <div class="input-group">
                 <label for="dieta">Tipo de dieta:</label>
@@ -73,16 +277,75 @@
             </div>
         </div>
 
-        <button id="calcular">Calcular Huella</button>
+        <button class="btn-calculate" id="calcular">Calcular Huella</button>
         
-        <div id="resultado-container" class="hidden">
-            <h2>Resultado</h2>
-            <p id="resultado"></p>
-            <div id="comparacion"></div>
+        <div id="resultado-container" class="result-card hidden">
+            <h3>Resultado</h3>
+            <div class="result-number" id="resultado"></div>
+            <div class="result-comparison" id="comparacion"></div>
         </div>
     </div>
 
-    <script src="js/calculadora.js"></script>
+    <script>
+        document.getElementById('calcular').addEventListener('click', function() {
+            // Factores de emisión (kg CO2 eq)
+            const factores = {
+                electricidad: 0.5,
+                gas: 0.2,
+                autoKm: 0.2,
+                transportePublico: 0.04,
+                vueloCorto: 250,
+                vueloLargo: 1000,
+                dieta: {
+                    omnivora: 150,
+                    vegetariana: 100,
+                    vegana: 75
+                },
+                consumo: {
+                    bajo: 50,
+                    medio: 100,
+                    alto: 200
+                }
+            };
+
+            // Obtener valores
+            const electricidad = parseFloat(document.getElementById('electricidad').value) || 0;
+            const gas = parseFloat(document.getElementById('gas').value) || 0;
+            const autoKm = parseFloat(document.getElementById('autoKm').value) || 0;
+            const transportePublico = parseFloat(document.getElementById('transportePublico').value) || 0;
+            const vuelosCortos = parseFloat(document.getElementById('vuelosCortos').value) || 0;
+            const vuelosLargos = parseFloat(document.getElementById('vuelosLargos').value) || 0;
+            const dieta = document.getElementById('dieta').value;
+            const consumo = document.getElementById('consumo').value;
+
+            // Calcular emisiones
+            const emisionesHogar = (electricidad * factores.electricidad) + (gas * factores.gas);
+            const emisionesMovilidad = (autoKm * factores.autoKm) + (transportePublico * factores.transportePublico) + 
+                                     ((vuelosCortos * factores.vueloCorto) / 12) + ((vuelosLargos * factores.vueloLargo) / 12);
+            const emisionesHabitos = factores.dieta[dieta] + factores.consumo[consumo];
+
+            const totalMensual = emisionesHogar + emisionesMovilidad + emisionesHabitos;
+            const totalAnual = totalMensual * 12;
+
+            // Mostrar resultado
+            document.getElementById('resultado').textContent = totalAnual.toFixed(1) + ' kg CO₂ eq/año';
+            
+            // Comparación
+            let mensaje = '';
+            if (totalAnual < 2000) {
+                mensaje = 'Excelente! Tu huella está muy por debajo del promedio mundial (4,000 kg CO₂/año).';
+            } else if (totalAnual < 4000) {
+                mensaje = 'Bueno. Tu huella está por debajo del promedio mundial.';
+            } else if (totalAnual < 8000) {
+                mensaje = 'Tu huella está por encima del promedio. Considera reducir el consumo energético y los viajes.';
+            } else {
+                mensaje = 'Tu huella es muy alta. Es importante tomar medidas para reducir las emisiones.';
+            }
+            
+            document.getElementById('comparacion').innerHTML = `<p>${mensaje}</p>`;
+            document.getElementById('resultado-container').classList.remove('hidden');
+        });
+    </script>
 </body>
 
 </html>
