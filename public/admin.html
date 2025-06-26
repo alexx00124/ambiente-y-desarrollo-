@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg: #f5f8ff;
+            --primary: #4c6ef5;
+            --text: #1e1e1e;
+            --white: #fff;
+            --gray: #dcdcdc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg);
+            display: flex;
+        }
+
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: #1f2937;
+            color: white;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 2rem;
+        }
+
+        .menu-item {
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            color: var(--primary);
+        }
+
+        /* Main */
+        .main {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .charts {
+            width: 100%;
+            overflow-x: auto;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* o start si lo prefieres alineado a la izquierda */
+        }
+
+
+
+        canvas {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        #pieChart {
+            width: 300px !important;
+            height: 420px !important;
+        }
+
+        #barChart {
+            width: 695px !important;
+            height: 420px !important;
+            max-width: none !important;
+            /* <-- esto es clave para evitar que lo limiten */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2><i class="bi bi-speedometer"></i> Admin</h2>
+        <div class="menu-item"><i class="bi bi-grid"></i> Dashboard</div>
+        <div class="menu-item"><i class="bi bi-bar-chart"></i> Estadísticas</div>
+        <div class="menu-item"><i class="bi bi-people"></i> Usuarios</div>
+        <div class="menu-item"><i class="bi bi-gear"></i> Configuración</div>
+        <div class="menu-item"><i class="bi bi-box-arrow-left"></i> Salir</div>
+    </div>
+
+    <div class="main">
+        <div class="header">
+            <h1>Bienvenido, Admin</h1>
+        </div>
+
+        <div class="cards">
+            <div class="card"><strong>Usuarios registrados</strong><br><span id="usuarios">...</span></div>
+            <div class="card"><strong>Calculadoras de huella usadas</strong><br><span id="calculos">...</span></div>
+            <div class="card"><strong>Promedio huella CO₂</strong><br><span id="promedio">...</span> t/usuario</div>
+            <div class="card"><strong>ODS completados</strong><br><span id="ods">...</span> / 17</div>
+        </div>
+
+
+
+        <div class="charts">
+            <canvas id="pieChart" width="200" height="100"></canvas>
+            <canvas id="barChart" width="700" height="400"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const barCtx = document.getElementById('barChart');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Europa', 'América del Norte', 'América Latina', 'África', 'Asia', 'Oceanía'],
+                datasets: [
+                    {
+                        label: 'Áreas protegidas (%)',
+                        data: [26.4, 12.9, 23.4, 14.2, 14.9, 19.5],
+                        backgroundColor: '#4c6ef5'
+                    },
+                    {
+                        label: 'Restricción de agua (relativa)',
+                        data: [2, 1, 3, 4, 4, 2], // escala 1–5
+                        backgroundColor: '#74c0fc'
+                    },
+                    {
+                        label: 'Regulación de emisiones (relativa)',
+                        data: [5, 4, 3, 2, 3, 4],
+                        backgroundColor: '#91a7ff'
+                    },
+                    {
+                        label: 'Prohibición de plásticos (relativa)',
+                        data: [5, 3, 4, 2, 3, 5],
+                        backgroundColor: '#a5d8ff'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: {
+                        display: true,
+                        text: 'Restricciones ambientales por continente'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Índice relativo / Porcentaje'
+                        }
+                    }
+                }
+            }
+        });
+
+        const pieCtx = document.getElementById('pieChart');
+        new Chart(pieCtx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    'ODS 7: Energía asequible y no contaminante',
+                    'ODS 13: Acción por el clima',
+                    'ODS 11: Ciudades sostenibles',
+                    'ODS 12: Producción y consumo responsables',
+                    'ODS 9: Industria, innovación e infraestructura'
+                ],
+                datasets: [{
+                    data: [30, 25, 20, 15, 10],
+                    backgroundColor: [
+                        '#4c6ef5',
+                        '#20c997',
+                        '#ffc078',
+                        '#ff8787',
+                        '#845ef7'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 12,
+                            padding: 15
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Distribución de huella de carbono por ODS',
+                        font: { size: 16 }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
