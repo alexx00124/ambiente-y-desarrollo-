@@ -9,6 +9,8 @@ body {
   margin: 0;
   padding: 50px 20px;
   color: #00332e;
+  line-height: 1.6;
+  scroll-behavior: smooth;
 }
 
 main {
@@ -49,6 +51,7 @@ nav a:hover {
   text-decoration: underline;
 
 }
+
 h1 {
   text-align: center;
   color: #0a4f46;
@@ -59,6 +62,14 @@ h1 {
 h2 {
   color: #1b5e20;
   margin-bottom: 1rem;
+}
+
+h3 {
+  color: #2e7d32;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 0.6em;
 }
 
 form {
@@ -106,6 +117,7 @@ p {
   margin-top: 1rem;
   color: #2e7d32;
   font-weight: bold;
+  opacity: 0.85;
 }
 
 a {
@@ -113,13 +125,13 @@ a {
   margin-top: 1rem;
   color: #2e7d32;
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 a:hover {
   text-decoration: underline;
+  color: #1b5e20;
 }
-
-
 
 .ods-container {
   display: grid;
@@ -173,7 +185,8 @@ a:hover {
 
 
 header {
-  background-image: url("img/banner.jpg"); /* Imagen de cabecera */
+  background-image: url("img/banner.jpg");
+  background-color: #199919b6;
   background-size: cover;
   background-position: center;
   height: 300px;
@@ -182,6 +195,16 @@ header {
   justify-content: center;
   color: white;
   text-align: center;
+  padding: 90px 20px;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+header p {
+  font-size: 1.1em;
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0.9;
 }
 
 
@@ -189,8 +212,17 @@ header h1 {
   padding: 1rem 2rem;
   border-radius: 10px;
   font-size: 2.5rem;
+  margin-bottom: 15px;
 }
 
+section {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto 50px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 30px;
+}
 
 .section-title {
   text-align: center;
@@ -199,38 +231,134 @@ header h1 {
   margin: 2rem 0 1rem;
 }
 
+.continente {
+  background-color: var(--bg-light);
+  border: 1px solid var(--border-color);
+  /* Borde suave */
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease;
+  /* Transición sutil al pasar el ratón */
+}
+
+.continente:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  /* Sombra ligeramente más pronunciada */
+}
+
+.continente h2 {
+  color: var(--primary-color);
+  font-size: 2em;
+  text-align: center;
+  padding: 25px;
+  margin-bottom: 0;
+  background-color: #f5f5f5;
+  /* Un fondo ligeramente diferente para el título */
+  border-bottom: 1px solid var(--border-color);
+  /* Separador sutil */
+}
+
+/* Contenido Interno - Diseño limpio */
+.continente-contenido-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  /* Imagen más pequeña, info más grande */
+  gap: 20px;
+  padding: 25px;
+  align-items: start;
+  /* Alineación al inicio */
+  flex-grow: 1;
+}
+
+/* Cuadro GRANDE para imagen, pero con estilo sencillo */
+.continente-imagen {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  /* Sombra muy ligera */
+  border: 1px solid var(--border-color);
+  /* Borde sutil */
+}
+
+.continente-imagen img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Cuadros PEQUEÑOS de ODS, limpios */
+.ods-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.ods-card {
+  background-color: var(--bg-light);
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  /* Borde simple */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  /* Sombra muy ligera */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ods-card:hover {
+  border-color: var(--accent-color);
+  /* Borde se acentúa al pasar el ratón */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /* Sombra un poco más visible */
+}
+
+.ods-card h3 {
+  color: var(--primary-color);
+  font-size: 1.15em;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.ods-card p {
+  font-size: 0.95em;
+  margin-bottom: 0;
+}
+
 .cards-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
 
-    .card {
-      background-color: white;
-      border: 1px solid #c5e1a5;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      width: 300px;
-      transition: transform 0.2s ease;
-    }
+.card {
+  background-color: white;
+  border: 1px solid #c5e1a5;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  transition: transform 0.2s ease;
+}
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
+.card:hover {
+  transform: translateY(-5px);
+}
 
-    .card h3 {
-      color: #2e7d32;
-      margin-bottom: 10px;
-    }
+.card h3 {
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
 
-    .card p {
-      color: #555;
-    }
+.card p {
+  color: #555;
+}
+
 .continente h2 {
   font-size: 24px;
   margin-bottom: 15px;
@@ -288,7 +416,7 @@ header h1 {
   margin-bottom: 15px;
   overflow: hidden;
   background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   border-left: 6px solid #23c181;
 }
@@ -303,7 +431,7 @@ header h1 {
   font-size: 18px;
   background: #f1fefb;
 }
- 
+
 .title:hover {
   background: #ddf5ec;
 }
@@ -339,3 +467,71 @@ header h1 {
   transform: rotate(180deg);
 }
 
+.calculator-container {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  /* fondo blanco para destacar */
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  /* sombra suave */
+  border: 1px solid #e0e0e0;
+  /* borde sutil */
+}
+
+
+.calculator-container h2 {
+  text-align: left;
+  /* Título alineado a la izquierda en la calculadora */
+  border-bottom: 2px solid #f0f2f5;
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+}
+
+.calculator-container select {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: white;
+}
+
+.calculator-container .input-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.calculator-container label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-color-light);
+}
+
+.calculator-container button {
+  margin-top: 30px;
+}
+
+#resultado-container {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+#resultado-container.hidden {
+  display: none;
+}
+
+#comparacion h3 {
+  margin-top: 20px;
+  color: var(--text-color);
+  text-align: left;
+}
+
+#comparacion ul {
+  list-style-type: "→ ";
+  padding-left: 20px;
+}
